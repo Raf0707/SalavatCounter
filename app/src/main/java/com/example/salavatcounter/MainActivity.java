@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private int myCounter = 0;
     Button button;
     Button Zero;
+    Button Minus;
     TextView textView;
 
 
@@ -18,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = (Button) findViewById(R.id.button);
-        Zero = (Button) findViewById(R.id.Zzero);
+        button = findViewById(R.id.button);
+        Zero = findViewById(R.id.Zzero);
+        Minus = findViewById(R.id.minus);
         textView = (TextView) findViewById(R.id.count);
 
 
@@ -27,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myCounter++;
+                textView.setText(Integer.toString(myCounter));
+            }
+        }
+
+        class Minuss implements View.OnClickListener {
+            @Override
+            public void onClick(View v) {
+                myCounter--;
+                if (myCounter < 0) {
+                    myCounter = 0;
+                }
                 textView.setText(Integer.toString(myCounter));
             }
         }
@@ -41,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
+        Minus.setOnClickListener(new Minuss());
 
 
     }

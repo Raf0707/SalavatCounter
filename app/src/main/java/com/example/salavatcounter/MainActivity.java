@@ -2,10 +2,13 @@ package com.example.salavatcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.*;
-import android.os.Bundle;
+import android.animation.*;
 import android.view.*;
+import android.view.animation.*;
 import android.widget.*;
+import android.os.Bundle;
+
+//import java.awt.*;
 
 public class MainActivity extends AppCompatActivity {
     private int myCounter = 0;
@@ -13,6 +16,12 @@ public class MainActivity extends AppCompatActivity {
     Button Zero;
     Button Minus;
     TextView textView;
+    int maxvalue;
+
+
+    private static final TimeInterpolator GAUGE_ANIMATION_INTERPOLATOR = new DecelerateInterpolator(2);
+    private static final long GAUGE_ANIMATION_DURATION = 50000;
+    private ProgressBar mProgressBar;
 
 
     @Override
@@ -22,14 +31,20 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         Zero = findViewById(R.id.Zzero);
         Minus = findViewById(R.id.minus);
-        textView = (TextView) findViewById(R.id.count);
-
+        textView = findViewById(R.id.count);
+        mProgressBar = findViewById(R.id.mainProgressBar);
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
 
         class Counter implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 myCounter++;
                 textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
+                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator.setDuration(GAUGE_ANIMATION_DURATION);
+                animator.start();
             }
         }
 
@@ -41,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
                     myCounter = 0;
                 }
                 textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
+                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator.setDuration(GAUGE_ANIMATION_DURATION);
+                animator.start();
             }
         }
 
@@ -49,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 myCounter = 0;
                 textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
+                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator.setDuration(GAUGE_ANIMATION_DURATION);
+                animator.start();
             }
         }
 
@@ -57,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         Minus.setOnClickListener(new Minuss());
 
 
+
     }
+
 
 
 }

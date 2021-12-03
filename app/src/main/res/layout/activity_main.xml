@@ -23,12 +23,13 @@
         app:layout_constraintVertical_bias="0.765" />
 
     <EditText
-        android:id="@+id/textView3"
+        android:id="@+id/Tsel"
         android:layout_width="95dp"
         android:layout_height="60dp"
         android:gravity="center"
         android:hint="ЦЕЛЬ"
         android:textSize="25sp"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -109,24 +110,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="69dp">
 
-
-        <ProgressBar
-            android:id="@+id/mainProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="25px" >
 
+            <ProgressBar
+                android:id="@+id/mainProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="100"
+                />
+        </FrameLayout>
 
     </RelativeLayout>
 
 
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--android:max="@+id/Maxvalue"-->

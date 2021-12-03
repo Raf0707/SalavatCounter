@@ -2,13 +2,15 @@ package com.example.salavatcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Scanner;
 import android.animation.*;
+import android.content.*;
+import android.text.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
 import android.os.Bundle;
 
-//import java.awt.*;
 
 public class MainActivity extends AppCompatActivity {
     private int myCounter = 0;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button Zero;
     Button Minus;
     TextView textView;
-    int maxvalue;
+
 
 
     private static final TimeInterpolator GAUGE_ANIMATION_INTERPOLATOR = new DecelerateInterpolator(2);
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.count);
         mProgressBar = findViewById(R.id.mainProgressBar);
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
+        EditText text1 = findViewById(R.id.Tsel);
+
+
 
         class Counter implements View.OnClickListener {
             @Override
@@ -77,9 +82,30 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        class Tsel implements View.OnClickListener {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("name", String.valueOf(Boolean.parseBoolean(String.valueOf(Boolean.parseBoolean(text1.getText().toString())))));
+                startActivity(intent);
+
+            }
+        }
+
+        class Maxvalue implements View.OnClickListener {
+            @Override
+            public void onClick(View v) {
+                Scanner sc = new Scanner(System.in);
+                int maxvalue = sc.nextInt();
+                mProgressBar.setMax(maxvalue);
+            }
+        }
+
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
         Minus.setOnClickListener(new Minuss());
+
+
 
 
 

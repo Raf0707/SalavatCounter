@@ -12,9 +12,9 @@
         android:layout_width="100dp"
         android:layout_height="83dp"
         android:gravity="center"
-        android:text="+"
+        android:text="@string/plus"
         android:textColor="@color/white"
-        android:textSize="45dp"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.948"
@@ -27,7 +27,7 @@
         android:layout_width="95dp"
         android:layout_height="60dp"
         android:gravity="center"
-        android:hint="ЦЕЛЬ"
+        android:hint="@string/Tsel"
         android:textSize="25sp"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="225dp"
         android:gravity="center"
-        android:text="اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي ا لْأَوَّلِينَ وَ ا لْآخِرِ ينَ وَ فِي ا لْمَلَا ءِ ا لْأَ عْلَى اِلَى يَوْمِ ا لدِّينِ"
+        android:text="@string/salavat"
         android:textColor="@color/black"
         android:textSize="37sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="115dp"
         android:gravity="center"
-        android:text="О Аллах! Ниспошли благословение Мухаммаду с первых и до последних дней и в Высшем Собрании (среди ангелов), вплоть до Судного дня"
+        android:text="@string/translate"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,21 +71,23 @@
         android:id="@+id/count"
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:text="0"
         android:gravity="center"
+        android:text="@string/_0"
         android:textColor="@color/black"
         android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
 
     <Button
         android:id="@+id/Zzero"
         android:layout_width="100dp"
         android:layout_height="83dp"
-        android:text="reset"
-        android:textSize="19dp"
+        android:text="@string/reset"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
@@ -98,8 +100,8 @@
         android:layout_width="100dp"
         android:layout_height="83dp"
         android:gravity="center"
-        android:text="‒"
-        android:textSize="45dp"
+        android:text="@string/minus"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -107,29 +109,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.765" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="69dp">
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="90dp">
+
+        <ProgressBar
+            android:id="@+id/mainProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="25px" >
-
-            <ProgressBar
-                android:id="@+id/mainProgressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:max="100"
-                />
-        </FrameLayout>
-
+            android:max="10"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="341dp" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="105dp"
+        android:layout_height="59dp"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.593" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">SalavatCounter</string>
+    <string name="textToast">Цель Установлена!</string>
+    <string name="vvediteTsel">Введите Цель!</string>
+    <string name="ok">OK</string>
+    <string name="minus">‒</string>
+    <string name="reset">reset</string>
+    <string name="_0">0</string>
+    <string name="translate">О Аллах! Ниспошли благословение Мухаммаду с первых и до последних дней и в Высшем Собрании (среди ангелов), вплоть до Судного дня</string>
+    <string name="salavat">اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي ا لْأَوَّلِينَ وَ ا لْآخِرِ ينَ وَ فِي ا لْمَلَا ءِ ا لْأَ عْلَى اِلَى يَوْمِ ا لدِّينِ</string>
+    <string name="Tsel">ЦЕЛЬ</string>
+    <string name="plus">+</string>
+
 </resources>

@@ -2,7 +2,6 @@ package com.example.salavatcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Scanner;
 import android.animation.*;
 import android.content.*;
 import android.text.*;
@@ -17,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     Button Zero;
     Button Minus;
+    Button Ok;
     TextView textView;
+    EditText text1;
+    int maxvalue;
+    Object toast;
 
 
 
@@ -36,81 +39,91 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.count);
         mProgressBar = findViewById(R.id.mainProgressBar);
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
-        EditText text1 = findViewById(R.id.Tsel);
+        text1 = findViewById(R.id.Tsel);
+        Ok = findViewById(R.id.ok);
 
 
-
-        class Counter implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                myCounter++;
-                textView.setText(Integer.toString(myCounter));
-
-                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
-                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-                animator.setDuration(GAUGE_ANIMATION_DURATION);
-                animator.start();
-            }
-        }
-
-        class Minuss implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                myCounter--;
-                if (myCounter < 0) {
-                    myCounter = 0;
-                }
-                textView.setText(Integer.toString(myCounter));
-
-                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
-                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-                animator.setDuration(GAUGE_ANIMATION_DURATION);
-                animator.start();
-            }
-        }
-
-        class Zerooo implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                myCounter = 0;
-                textView.setText(Integer.toString(myCounter));
-
-                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter - 1, myCounter);
-                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-                animator.setDuration(GAUGE_ANIMATION_DURATION);
-                animator.start();
-            }
-        }
-
-        class Tsel implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("name", String.valueOf(Boolean.parseBoolean(String.valueOf(Boolean.parseBoolean(text1.getText().toString())))));
-                startActivity(intent);
-
-            }
-        }
-
-        class Maxvalue implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                Scanner sc = new Scanner(System.in);
-                int maxvalue = sc.nextInt();
-                mProgressBar.setMax(maxvalue);
-            }
-        }
 
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
         Minus.setOnClickListener(new Minuss());
-
-
-
-
+        Ok.setOnClickListener(new Ok());
 
     }
 
+class Counter implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+        myCounter++;
+        textView.setText(Integer.toString(myCounter));
 
+        ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+        animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+        animator.setDuration(GAUGE_ANIMATION_DURATION);
+        animator.start();
+    }
+}
 
+    class Minuss implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            myCounter--;
+            if (myCounter < 0) {
+                myCounter = 0;
+            }
+            textView.setText(Integer.toString(myCounter));
+
+            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+            animator.setDuration(GAUGE_ANIMATION_DURATION);
+            animator.start();
+        }
+    }
+
+    class Zerooo implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            myCounter = 0;
+            textView.setText(Integer.toString(myCounter));
+
+            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+            animator.setDuration(GAUGE_ANIMATION_DURATION);
+            animator.start();
+        }
+    }
+
+    class Tsel implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            text1.setText(Integer.toString(maxvalue));
+
+        }
+    }
+
+    class Maxvalue implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            mProgressBar.setMax(maxvalue);
+        }
+
+    }
+
+    class Ok implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            //text1.setText(maxvalue);
+            //maxvalue = Integer.parseInt(String.valueOf(text1));
+            //mProgressBar.setMax(maxvalue);
+            if (text1.length() > 0) {
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.textToast, Toast.LENGTH_SHORT);
+                toast.show();
+            } else if (text1.length() == 0) {
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+
+    }
 }

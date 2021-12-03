@@ -51,18 +51,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-class Counter implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-        myCounter++;
-        textView.setText(Integer.toString(myCounter));
+    class Counter implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            myCounter++;
+            textView.setText(Integer.toString(myCounter));
 
-        ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
-        animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-        animator.setDuration(GAUGE_ANIMATION_DURATION);
-        animator.start();
+            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+            animator.setDuration(GAUGE_ANIMATION_DURATION);
+            animator.start();
+        }
     }
-}
 
     class Minuss implements View.OnClickListener {
         @Override

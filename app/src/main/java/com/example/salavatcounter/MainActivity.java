@@ -93,29 +93,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class Tsel implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            text1.setText(Integer.toString(maxvalue));
-
-        }
-    }
-
-    class Maxvalue implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-            mProgressBar.setMax(maxvalue);
-        }
-
-    }
 
     class Ok implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            //text1.setText(maxvalue);
-            //maxvalue = Integer.parseInt(String.valueOf(text1));
-            //mProgressBar.setMax(maxvalue);
+
             if (text1.length() == 0) {
                 Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
                 toast.show();

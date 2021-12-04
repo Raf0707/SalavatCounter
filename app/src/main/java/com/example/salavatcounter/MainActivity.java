@@ -116,14 +116,25 @@ public class MainActivity extends AppCompatActivity {
             //text1.setText(maxvalue);
             //maxvalue = Integer.parseInt(String.valueOf(text1));
             //mProgressBar.setMax(maxvalue);
-            if (text1.length() > 0) {
-                Toast toast = Toast.makeText(getApplicationContext(), R.string.textToast, Toast.LENGTH_SHORT);
-                toast.show();
-            } else if (text1.length() == 0) {
+            if (text1.length() == 0) {
                 Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
                 toast.show();
+            } else if (text1.length() > 0) {
+                String a = text1.getText().toString();
+                int b = new Integer(a).intValue();
+                if (b > 0) {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.textToast, Toast.LENGTH_SHORT);
+                    toast.show();
+                    maxvalue = b;
+                    mProgressBar.setMax(maxvalue);
+                } else if (b == 0) {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         }
 
     }
+
+
 }

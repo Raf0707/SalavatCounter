@@ -2,7 +2,7 @@
     <string name="app_name">SalavatCounter</string>
     <string name="textToast">Цель Установлена!</string>
     <string name="vvediteTsel">Введите Цель!</string>
-    <string name="CompleteTsel">Цель достигнута! Да вознаградит Вас Аллах</string>
+    <string name="CompleteTsel">Цель достигнута!\nДа вознаградит Вас Аллах</string>
     <string name="ok">OK</string>
     <string name="minus">‒</string>
     <string name="reset">reset</string>

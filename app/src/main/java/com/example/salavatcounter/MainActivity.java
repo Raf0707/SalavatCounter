@@ -1,14 +1,20 @@
 package com.example.salavatcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.*;
 
 import android.animation.*;
 import android.content.*;
+import android.graphics.*;
+import android.graphics.drawable.*;
+import android.graphics.drawable.shapes.*;
 import android.text.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
 import android.os.Bundle;
+
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     EditText text1;
     int maxvalue;
-    Object toast;
+    int tsel;
+
 
 
 
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         Minus.setOnClickListener(new Minuss());
         Ok.setOnClickListener(new Ok());
 
+
     }
 
     class Counter implements View.OnClickListener {
@@ -63,6 +71,27 @@ public class MainActivity extends AppCompatActivity {
             animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
             animator.setDuration(GAUGE_ANIMATION_DURATION);
             animator.start();
+
+
+
+            if (text1.length() != 0) {
+                tsel = Integer.parseInt(text1.getText().toString());
+                if (myCounter == tsel) {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                }
+            } else {
+                tsel = 100;
+                if (myCounter == tsel) {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                }
+            }
+
         }
     }
 
@@ -119,6 +148,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }

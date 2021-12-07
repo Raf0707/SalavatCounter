@@ -124,7 +124,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:max="10"
+            android:max="100"
             tools:layout_editor_absoluteX="12dp"
             tools:layout_editor_absoluteY="341dp" />
     </RelativeLayout>
@@ -144,5 +144,7 @@
         app:layout_constraintVertical_bias="0.593" />
 
 
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--android:max="@+id/Maxvalue"-->

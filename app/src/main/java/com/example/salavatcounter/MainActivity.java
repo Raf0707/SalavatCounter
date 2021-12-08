@@ -1,20 +1,20 @@
 package com.example.salavatcounter;
 
+import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.*;
 
 import android.animation.*;
 import android.content.*;
+import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
 import android.graphics.drawable.shapes.*;
+import android.os.*;
 import android.text.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
-import android.os.Bundle;
-
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         button = findViewById(R.id.button);
         Zero = findViewById(R.id.Zzero);
         Minus = findViewById(R.id.minus);
@@ -50,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         text1 = findViewById(R.id.Tsel);
         Ok = findViewById(R.id.ok);
-
-
+        int textColor = getResources().getColor(R.color.purple_300,  null);
 
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
         Minus.setOnClickListener(new Minuss());
         Ok.setOnClickListener(new Ok());
 
+        mProgressBar.getProgressDrawable().setColorFilter(
+                Color.rgb(18, 112, 90), android.graphics.PorterDuff.Mode.SRC_IN);
 
     }
 

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     EditText text1;
     int maxvalue;
     int tsel;
+    //TextView TselTextView;
 
 
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         text1 = findViewById(R.id.Tsel);
         Ok = findViewById(R.id.ok);
-        int textColor = getResources().getColor(R.color.purple_300,  null);
+        //TselTextView = findViewById(R.id.Tsel);
 
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.getProgressDrawable().setColorFilter(
                 Color.rgb(18, 112, 90), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        text1.getBackground().setColorFilter(Color.rgb(18, 112, 90), PorterDuff.Mode.SRC_ATOP);
+
+        //Spanned htmlString = Html.fromHtml("<u> <font color=\"#12705A\">  </font> </u>");
+        //text1.setText(htmlString);
 
     }
 

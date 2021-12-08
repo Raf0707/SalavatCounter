@@ -40,6 +40,8 @@
         android:hint="@string/Tsel"
         android:textSize="25sp"
         android:inputType="number"
+        android:textColor="@color/purple_300"
+        android:textCursorDrawable="@drawable/green_cursor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"

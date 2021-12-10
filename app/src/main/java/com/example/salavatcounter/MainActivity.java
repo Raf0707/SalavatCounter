@@ -18,7 +18,7 @@ import android.widget.*;
 
 
 public class MainActivity extends AppCompatActivity {
-    private int myCounter = 0;
+    public int myCounter = 0;
     Button button;
     Button Zero;
     Button Minus;
@@ -27,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
     EditText text1;
     int maxvalue;
     int tsel;
-    //TextView TselTextView;
+    int currentPage;
 
 
 
+    String[] salavats = {"Йаумитдин", "Аль-Фатиха", "ДжазаЛлах", "Шафа'ат Всех пророков"};
+
+    String[] texts = {"", "", ""};
+
+    int[] salavaty = {R.string.salavat, R.string.salavatFatiha};
 
     private static final TimeInterpolator GAUGE_ANIMATION_INTERPOLATOR = new DecelerateInterpolator(2);
     private static final long GAUGE_ANIMATION_DURATION = 50000;
@@ -46,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
         button = findViewById(R.id.button);
         Zero = findViewById(R.id.Zzero);
         Minus = findViewById(R.id.minus);
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         text1 = findViewById(R.id.Tsel);
         Ok = findViewById(R.id.ok);
-        //TselTextView = findViewById(R.id.Tsel);
+
 
         button.setOnClickListener(new Counter());
         Zero.setOnClickListener(new Zerooo());
@@ -66,9 +74,42 @@ public class MainActivity extends AppCompatActivity {
 
         text1.getBackground().setColorFilter(Color.rgb(18, 112, 90), PorterDuff.Mode.SRC_ATOP);
 
-        //Spanned htmlString = Html.fromHtml("<u> <font color=\"#12705A\">  </font> </u>");
-        //text1.setText(htmlString);
 
+        Spinner spinner = findViewById(R.id.spinner);
+        // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, salavats);
+        // Определяем разметку для использования при выборе элемента
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Применяем адаптер к элементу spinner
+        spinner.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Получаем выбранный объект
+                String item = (String)parent.getItemAtPosition(position);
+                //selection.setText(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
+
+    }
+
+
+
+    class Navigation implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+
+        }
     }
 
     class Counter implements View.OnClickListener {

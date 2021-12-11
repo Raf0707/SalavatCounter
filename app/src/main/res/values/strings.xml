@@ -18,6 +18,16 @@
     <string name="newTsel">New</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">settings</string>
+    <string name="jests">Жесты</string>
+    <string name="mysettings">Настройки</string>
+    <string name="myvisiable">Видимость</string>
+    <string name="mytranscription">Транскрипция</string>
+    <string name="mytranslate">Перевод</string>
+    <string name="mylanguage">Язык</string>
+    <string name="white">Светлая</string>
+    <string name="dark">Темная</string>
+    <string name="choice">Выбрать</string>
 
 </resources>
 

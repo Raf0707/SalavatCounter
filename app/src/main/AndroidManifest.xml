@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SalavatCounter">
         <activity
-            android:name=".FatihaActivity"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

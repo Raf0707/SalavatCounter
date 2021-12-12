@@ -16,6 +16,7 @@
     <string name="Tsel">ЦЕЛЬ</string>
     <string name="plus">+</string>
     <string name="newTsel">New</string>
+    <string name="vvediteNumber">Введите число!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">settings</string>

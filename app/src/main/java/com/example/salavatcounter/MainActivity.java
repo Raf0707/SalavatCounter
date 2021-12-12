@@ -14,20 +14,25 @@ import android.graphics.drawable.*;
 import android.graphics.drawable.shapes.*;
 import android.os.*;
 import android.text.*;
+import android.util.*;
 import android.view.*;
 import android.view.animation.*;
 import android.view.inputmethod.*;
 import android.widget.*;
+import androidx.appcompat.widget.Toolbar;
 
 import java.lang.reflect.*;
 import java.util.concurrent.*;
+import java.util.regex.*;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     private int myCounter = 0;
     int maxvalue;
     int tsel;
     int currentPage = 1;
+    int q;
+    String c;
     Button button;
     Button Zero;
     Button Minus;
@@ -65,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
         handler = new Handler();
         button = findViewById(R.id.button);
         Zero = findViewById(R.id.Zzero);
@@ -84,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        button.setOnClickListener(new Counter());
-        Zero.setOnClickListener(new Zerooo());
-        Minus.setOnClickListener(new Minuss());
-        Ok.setOnClickListener(new Ok());
+        button.setOnClickListener(this);
+        Zero.setOnClickListener(this);
+        Minus.setOnClickListener(this);
+        Ok.setOnClickListener(this);
 
         mProgressBar.getProgressDrawable().setColorFilter(
                 Color.rgb(18, 112, 90), android.graphics.PorterDuff.Mode.SRC_IN);
@@ -104,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //display.getSize(size);
         //windowWidth = size.x;
         //windowHeight = size.y;
-        text1.requestFocus();
+        //text1.requestFocus();
 
 
         Spinner spinner = findViewById(R.id.spinner);
@@ -223,95 +231,91 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    class Counter implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            myCounter++;
-            textView.setText(Integer.toString(myCounter));
-
-            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
-            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-            animator.setDuration(GAUGE_ANIMATION_DURATION);
-            animator.start();
-
-
-
-            if (text1.length() != 0) {
-                tsel = Integer.parseInt(text1.getText().toString());
-
-                if (myCounter == tsel) {
-                    Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-
-                }
-
-            } else {
-                tsel = 100;
-                if (myCounter == tsel) {
-                    Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-
-                }
-            }
-
-        }
-    }
-
-    class Minuss implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            myCounter--;
-            if (myCounter < 0) {
-                myCounter = 0;
-            }
-            textView.setText(Integer.toString(myCounter));
-
-            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
-            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-            animator.setDuration(GAUGE_ANIMATION_DURATION);
-            animator.start();
-        }
-    }
-
-    class Zerooo implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            myCounter = 0;
-            textView.setText(Integer.toString(myCounter));
-
-            ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
-            animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
-            animator.setDuration(GAUGE_ANIMATION_DURATION);
-            animator.start();
-        }
-    }
-
-
-    class Ok implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-            if (text1.length() == 0) {
-                Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
-                toast.show();
-            } else if (text1.length() > 0) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ok:
+                Log.d("FFF", "Нажатие сработало");
                 String a = text1.getText().toString();
-                int b = new Integer(a).intValue();
-                if (b > 0) {
+                int b = Integer.parseInt(a);
+                for (char ch:a.toCharArray()) {
+                    c = String.valueOf(ch);
+                    if (c.equals(".") || (c.equals("-"))) {
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteNumber, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+                if (text1.length() == 0) {
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                } else if (b > 0) {
 
                     Toast toast = Toast.makeText(getApplicationContext(), R.string.textToast, Toast.LENGTH_SHORT);
                     toast.show();
                     maxvalue = b;
                     mProgressBar.setMax(maxvalue);
+
                 } else if (b == 0) {
                     Toast toast = Toast.makeText(getApplicationContext(), R.string.vvediteTsel, Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
-        }
+                break;
 
+            case R.id.button:
+                myCounter++;
+                textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+                animator.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator.setDuration(GAUGE_ANIMATION_DURATION);
+                animator.start();
+
+
+                if (text1.length() != 0) {
+                    tsel = Integer.parseInt(text1.getText().toString());
+
+                    if (myCounter == tsel) {
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+                    }
+
+                } else {
+                    tsel = 100;
+                    if (myCounter == tsel) {
+                        Toast toast = Toast.makeText(getApplicationContext(), R.string.CompleteTsel, Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+                    }
+                }
+                break;
+
+            case R.id.minus:
+                myCounter--;
+                if (myCounter < 0) {
+                    myCounter = 0;
+                }
+                textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator1 = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+                animator1.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator1.setDuration(GAUGE_ANIMATION_DURATION);
+                animator1.start();
+                break;
+
+            case R.id.Zzero:
+                myCounter = 0;
+                textView.setText(Integer.toString(myCounter));
+
+                ObjectAnimator animator2 = ObjectAnimator.ofInt(mProgressBar, "progress", myCounter, myCounter);
+                animator2.setInterpolator(GAUGE_ANIMATION_INTERPOLATOR);
+                animator2.setDuration(GAUGE_ANIMATION_DURATION);
+                animator2.start();
+                break;
+        }
     }
 
 }

@@ -14,12 +14,15 @@ import android.graphics.drawable.*;
 import android.graphics.drawable.shapes.*;
 import android.os.*;
 import android.text.*;
+import android.text.method.*;
 import android.util.*;
 import android.view.*;
 import android.view.animation.*;
 import android.view.inputmethod.*;
 import android.widget.*;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager2.adapter.*;
+import androidx.viewpager2.widget.*;
 
 import java.lang.reflect.*;
 import java.util.concurrent.*;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private int myCounter = 0;
     int maxvalue;
     int tsel;
-    int currentPage = 1;
+    int currentPage = 0;
     int q;
     String c;
     Button button;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Handler handler;
     Display display;
     Point size;
+
 
 
 
@@ -73,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        initArabic();
+        initRussian();
+
         handler = new Handler();
         button = findViewById(R.id.button);
         Zero = findViewById(R.id.Zzero);
@@ -88,32 +95,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         display = getWindowManager().getDefaultDisplay();
         size = new Point();
 
-
-
-
-
         button.setOnClickListener(this);
         Zero.setOnClickListener(this);
         Minus.setOnClickListener(this);
         Ok.setOnClickListener(this);
 
+
         mProgressBar.getProgressDrawable().setColorFilter(
                 Color.rgb(18, 112, 90), android.graphics.PorterDuff.Mode.SRC_IN);
 
         text1.getBackground().setColorFilter(Color.rgb(18, 112, 90), PorterDuff.Mode.SRC_ATOP);
-
-
-
-
-
-        //InputMethodManager inputManager = (InputMethodManager) text1.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        //inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-
-        //display.getSize(size);
-        //windowWidth = size.x;
-        //windowHeight = size.y;
-        //text1.requestFocus();
-
 
         Spinner spinner = findViewById(R.id.spinner);
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
@@ -172,36 +163,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             @Override
             public void onSwipeRight() {
-                currentPage++;
+                currentPage--;;
             }
 
             @Override
             public void onSwipeLeft() {
-                currentPage--;
+                currentPage++;
             }
         });
+
+        //ViewPager2 pager = findViewById(R.id.pager);
+        //FragmentStateAdapter pageAdapter = new MyAdapter(this);
+        //pager.setAdapter(pageAdapter);
+
+
+
 //-------------------ON_CREATE-----------------------------------------------------------------------------------------------------
     }
 
     public void initArabic() {
-        //textsArabic[0] = Integer.toString(R.string.salavat);
-        //textsArabic[1] = Integer.toString(R.string.salavatFatiha);
+        textsArabic[0] = "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي ا لْأَوَّلِينَ وَ ا لْآخِرِ ينَ وَ فِي ا لْمَلَا ءِ ا لْأَ عْلَى اِلَى يَوْمِ ا لدِّين";
+        textsArabic[1] = "أللَّهُمَّ صَلِّ وَ سَلِّمْ وَ بَارِكْ عَلَى سَيِّدِنَا مُحَمَّدِنِ الْفَاتِحِ لِمَا أُغْلِقَ وَالْخَاتِمِ لِمَا سَبَقَ وَ نَاصِرِ الْحَقِّ بِالْحَقِّ وَالْهَادِي إِلَى صِرَاطِكَ الْمُسْتَقِيم صَلَّى ٱللَّٰهُ تَعَالَى عَلَيْهِ وَ عَلَى آلِهِ وَ أَ صْحَابِهِ حَقَّ قَدْرِهِ وَ مِقْدَارِهِ الْعَظِيم";
+        //arabic.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f);
     }
 
     public void initRussian() {
-        //textsTranslate[0] = Integer.toString(R.string.translate);
-        //textsTranslate[1] = Integer.toString(R.string.TranslateFatiha);
+        textsTranslate[0] = "О Аллах! Ниспошли благословение Мухаммаду с первых и до последних дней и в Высшем Собрании (среди ангелов), вплоть до Судного дня";
+        textsTranslate[1] = "Славословия и приветствия нашему господину Мухаммаду ﷺ. Он - тот, кто открыл нам Твои сокровенные сокровища.\n" +
+                "        Он - последнее звено в цепи пророков, он победоносный помощник от Истинного, помогающий с помощью Истинного, он - тот, кто ведет людей по пути праведному!\n" +
+                "        Ему и близким его нескончаемые славословия и приветствия.";
+        //mtranslate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f);
+
     }
 
 
-    Runnable r = new Runnable() {
-        @Override
-        public void run() {
 
-            //arabic.setText(textsArabic[currentPage]);
-            //handler.postDelayed(r, 2000);
-        }
-    };
+
+
+    //arabic.setText(textsArabic[currentPage]);
+    //handler.postDelayed(r, 2000);
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -231,11 +233,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ok:
-                Log.d("FFF", "Нажатие сработало");
+                //Log.d("FFF", "Нажатие сработало");
                 String a = text1.getText().toString();
                 int b = Integer.parseInt(a);
                 for (char ch:a.toCharArray()) {
@@ -317,5 +321,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
         }
     }
+    Runnable r = new Runnable(){
+        public void run(){
+            if(currentPage < 0) currentPage = 0;
+            if(currentPage > 30) currentPage = 30;
+            arabic.setText(textsArabic[currentPage]);
+            //arabic.setTextSize(TypedValue.COMPLEX_UNIT_SP, 27f);
+            mtranslate.setText(textsTranslate[currentPage]);
+            handler.postDelayed(r,100);
+        }
+    };
 
 }
